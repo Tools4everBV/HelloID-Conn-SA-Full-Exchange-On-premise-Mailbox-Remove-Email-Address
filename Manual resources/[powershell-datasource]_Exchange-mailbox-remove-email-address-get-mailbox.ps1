@@ -25,7 +25,7 @@ try {
         return
     } else {
         $ParamsGetMailbxox = @{
-            OrganizationalUnit = $searchOUs 
+            OrganizationalUnit = $searchOUs
             Filter = "{Alias -like '$searchQuery' -or name -like '$searchQuery'}"
         }
         Write-Information "SearchQuery: $($ParamsGetMailbxox.Filter)"

@@ -1,5 +1,3 @@
-# HelloID-Conn-SA-Full-Exchange-On-premise-Mailbox-Remove-Email-Address
-
 <!-- Description -->
 ## Description
 This HelloID Service Automation Delegated Form provides the functionality to remove an non primary emailaddress from a mailbox. The following options are available:
@@ -7,6 +5,12 @@ This HelloID Service Automation Delegated Form provides the functionality to rem
  2. The result will show you a list of mailboxes. You will need select to correct one
  3. Select the email address you want to remove
  4. The selected email address will be removed
+
+## Versioning
+| Version | Description | Date |
+| - | - | - |
+| 1.0.1   | Added version number and updated all-in-one script | 2021/11/16  |
+| 1.0.0   | Initial release | 2021/04/29  |
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -50,5 +54,8 @@ This Powershell data source runs a query to search for the existing emailaddress
 ### Delegated form task '[Exchange-mailbox-remove-email-address'
 This delegated form task removes the Email Address from the mailbox
 
-# HelloID Docs
+## Getting help
+_If you need help, feel free to ask questions on our [forum](https://forum.helloid.com/forum/helloid-connectors/service-automation/250-helloid-sa-exchange-onpremises-remove-email-address)_
+
+## HelloID Docs
 The official HelloID documentation can be found at: https://docs.helloid.com/

@@ -1,12 +1,10 @@
-<#----- Exchange On-Premises: [powershell-datasource]_Exchange-mailbox-add-email-address-get-mailbox -----#>
+<#----- Exchange On-Premises: Exchange-mailbox-change-primary-address-get-emailaddresses -----#>
 # Connect to Exchange
 try {
     $adminSecurePassword = ConvertTo-SecureString -String "$ExchangeAdminPassword" -AsPlainText -Force
     $adminCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ExchangeAdminUsername, $adminSecurePassword
     $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck #-SkipRevocationCheck
-    $exchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri $exchangeConnectionUri -Credential $adminCredential -SessionOption $sessionOption -Authentication Kerberos -ErrorAction Stop
-    #-AllowRedirection
-    # $null = Import-PSSession $exchangeSession -DisableNameChecking -AllowClobber
+    $exchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri $exchangeConnectionUri -Credential $adminCredential -SessionOption $sessionOption -Authentication Kerberos -ErrorAction Stop #-AllowRedirection
     Write-Information "Successfully connected to Exchange using the URI [$exchangeConnectionUri]"
 } catch {
     Write-Information "Error connecting to Exchange using the URI [$exchangeConnectionUri]"
@@ -26,19 +24,26 @@ try {
         Get-Mailbox @ParamsGetMailbxox
     } -ArgumentList $ParamsGetMailbxox
 
-    $mailboxes = $mailBoxes | Select-Object -ExpandProperty emailAddresses | Where-Object { $_ -clike "smtp*" }
-    $resultCount = @($mailboxes).Count
+    $emailAddressList = $mailBoxes | Select-Object -ExpandProperty emailAddresses
+    $resultCount = @($emailAddressList).Count
     Write-Information "Result count: $resultCount"
     if ($resultCount -gt 0) {
-        foreach ($mailbox in $mailboxes) {
+        foreach ($mailbox in $emailAddressList) {
+            $isPrimary = $false
+            if ($mailbox -clike "SMTP*") {
+                $isPrimary = $true
+            }
+            $emailAddress = $mailbox.replace("SMTP:", "").replace("smtp:", "")
+
             $returnObject = @{
-                emailAddress = $mailbox.replace("smtp:", "")
+                IsPrimary    = $isPrimary
+                EmailAddress = $emailAddress
             }
             Write-Output $returnObject
         }
     }
 } catch {
-    Write-Error "Error searching AD user [$searchValue]. Error: $($_.Exception.Message)"
+    Write-Error "Error searching EmailAddresses [$searchValue]. Error: $($_.Exception.Message)"
 }
 
 # Disconnect from Exchange
