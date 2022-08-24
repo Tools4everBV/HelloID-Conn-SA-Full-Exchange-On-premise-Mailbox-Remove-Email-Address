@@ -6,7 +6,7 @@ try {
     $sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck #-SkipRevocationCheck
     $exchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri $exchangeConnectionUri -Credential $adminCredential -SessionOption $sessionOption -Authentication Kerberos -ErrorAction Stop
     #-AllowRedirection
-    # $null = Import-PSSession $exchangeSession -DisableNameChecking -AllowClobber
+    $null = Import-PSSession $exchangeSession -DisableNameChecking -AllowClobber
     Write-Information "Successfully connected to Exchange using the URI [$exchangeConnectionUri]"
 } catch {
     Write-Information "Error connecting to Exchange using the URI [$exchangeConnectionUri]"

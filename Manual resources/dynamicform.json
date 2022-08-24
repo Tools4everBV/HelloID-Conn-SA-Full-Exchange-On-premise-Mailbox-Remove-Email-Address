@@ -23,16 +23,16 @@
                                                    "grid":  {
                                                                 "columns":  [
                                                                                 {
+                                                                                    "headerName":  "Display Name",
+                                                                                    "field":  "displayName"
+                                                                                },
+                                                                                {
                                                                                     "headerName":  "Distinguished Name",
                                                                                     "field":  "DistinguishedName"
                                                                                 },
                                                                                 {
                                                                                     "headerName":  "Alias",
                                                                                     "field":  "Alias"
-                                                                                },
-                                                                                {
-                                                                                    "headerName":  "Display Name",
-                                                                                    "field":  "displayName"
                                                                                 },
                                                                                 {
                                                                                     "headerName":  "User Principal Name",

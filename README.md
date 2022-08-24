@@ -9,6 +9,7 @@ This HelloID Service Automation Delegated Form provides the functionality to rem
 ## Versioning
 | Version | Description | Date |
 | - | - | - |
+| 1.0.2   | Added version number and updated code for SA-agent and auditlogging | 2022/08/24  |
 | 1.0.1   | Added version number and updated all-in-one script | 2021/11/16  |
 | 1.0.0   | Initial release | 2021/04/29  |
 
@@ -51,7 +52,7 @@ This Powershell data source runs a query to search for the mailbox.
 ### Powershell data source '[powershell-datasource]_Exchange-mailbox-remove-email-address'
 This Powershell data source runs a query to search for the existing emailaddresses of the selected mailbox.
 
-### Delegated form task '[Exchange-mailbox-remove-email-address'
+### Delegated form task '[task]_Exchange on-premise - Mailbox remove email address'
 This delegated form task removes the Email Address from the mailbox
 
 ## Getting help
